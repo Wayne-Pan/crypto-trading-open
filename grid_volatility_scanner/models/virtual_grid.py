@@ -544,8 +544,8 @@ class VirtualGrid:
         now = datetime.now()
         
         # 判断是否为S级
-        is_s_rating_now = (new_rating_letter == "S")
-        was_s_rating_before = (old_rating_letter == "S")
+        is_s_rating_now = (new_rating_letter == "S" or new_rating_letter == "A" or new_rating_letter == "B")
+        was_s_rating_before = (old_rating_letter == "S" or old_rating_letter == "A" or old_rating_letter == "B")
         
         if is_s_rating_now and not was_s_rating_before:
             # 🔥 情况1: 首次进入S级 → 开始计时

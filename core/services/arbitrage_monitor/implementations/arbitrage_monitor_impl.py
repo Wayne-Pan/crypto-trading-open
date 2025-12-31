@@ -759,6 +759,9 @@ class ArbitrageMonitorService(IArbitrageMonitorService):
             if book1["bid"] > book2["ask"]:
                 spread_abs = book1["bid"] - book2["ask"]
                 spread_pct = (spread_abs / book2["ask"]) * Decimal("100")
+            else:
+                spread_abs = 0
+                spread_pct = 0
             
             spreads.append(PriceSpread(
                 symbol=symbol,

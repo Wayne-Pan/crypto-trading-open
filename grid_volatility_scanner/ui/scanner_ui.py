@@ -292,9 +292,16 @@ class ScannerUI:
                 symbol_upper = result.symbol.upper()
                 is_btc = 'BTC' in symbol_upper and not any(
                     x in symbol_upper for x in ['WBTC', 'TBTC', 'RBTC'])
+                is_eth = 'ETH' in symbol_upper and not any(
+                    x in symbol_upper for x in ['ETHFI', 'ETHW'])
+                is_sol = 'SOL' in symbol_upper and not any(
+                    x in symbol_upper for x in ['RESOLV'])
 
                 if is_btc:
-                    # BTC返回极高值，确保排第一
+                    return (float('inf'), float(result.estimated_apr))
+                if is_eth:
+                    return (float('inf'), float(result.estimated_apr))
+                if is_sol:
                     return (float('inf'), float(result.estimated_apr))
                 else:
                     # 其他代币按APR排序
